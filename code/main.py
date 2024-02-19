@@ -1,11 +1,11 @@
 from typing import TypedDict
 from src import params, vehicle as vehicle_module, camera as camera_module, distance_sensor as distance_sensor_module, led as led_module, switch as switch_module
-from src.brains import Types as BrainTypes
+from src.brains import ModuleTypes as BrainModuleTypes, Types as BrainTypes
 import json
 
 
 class Config(TypedDict):
-    brains: BrainTypes
+    brains: BrainModuleTypes
     camera: camera_module.Config
     distance_sensors: list[distance_sensor_module.Config]
     leds: list[led_module.LED]
