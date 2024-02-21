@@ -26,7 +26,7 @@ if __name__ == '__main__':
         loop_start = time.time()
 
         print(1, distance_sensor1.distance)
-        print(2, distance_sensor1.distance)
+        print(2, distance_sensor2.distance)
 
         time.sleep(max(0, 1/sample_hz -
                        (time.time() - loop_start)))
