@@ -1,5 +1,5 @@
 from typing import TypedDict
-from gpiozero import InputDevice
+from gpiozero import Button
 
 
 class PinsConfig(TypedDict):
@@ -10,7 +10,7 @@ class Config(TypedDict):
     pins: PinsConfig
 
 
-class Switch(InputDevice):
+class Switch(Button):
 
     """child class of gpiozero.InputDevice, main functionality is instance property 'value'"""
 

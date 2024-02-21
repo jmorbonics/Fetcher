@@ -13,7 +13,7 @@ switch1 = switch_module.Switch({
 
 switch2 = switch_module.Switch({
     "pins": {
-        "pin": 2
+        "pin": 3
     }
 })
 
@@ -23,7 +23,7 @@ if __name__ == '__main__':
     while time.time() - start_time < total_seconds:
 
         loop_start = time.time()
-        print(1, switch1.value)
-        print(2, switch2.value)
+        print(1, switch1.is_pressed)
+        print(2, switch2.is_pressed)
 
         time.sleep(max(0, 1/sample_hz - (time.time() - loop_start)))
