@@ -23,7 +23,7 @@ if __name__ == '__main__':
     while time.time() - start_time < total_seconds:
 
         loop_start = time.time()
-        print(1, switch1.is_pressed)
-        print(2, switch2.is_pressed)
+        print(1, 'Pressed: ', switch1.is_pressed, 'State: ', switch1.state)
+        print(2, 'Pressed: ', switch2.is_pressed, 'State: ', switch2.state)
 
         time.sleep(max(0, 1/sample_hz - (time.time() - loop_start)))

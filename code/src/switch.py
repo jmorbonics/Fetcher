@@ -16,3 +16,8 @@ class Switch(Button):
 
     def __init__(self, config: Config):
         super().__init__(config['pins']['pin'])
+        self.state = False
+        self.when_released = self.switch_state
+
+    def switch_state(self):
+        self.state = not self.state
