@@ -2,7 +2,7 @@ from src import led as led_module
 import time
 
 
-total_seconds = 60
+total_seconds = 3
 cycle_time = 1
 
 led1 = led_module.LED({
