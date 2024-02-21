@@ -2,22 +2,22 @@ from src import led as led_module
 import time
 
 
-total_seconds = 3
-cycle_time = 1
-
-led1 = led_module.LED({
-    "pins": {
-        "pin": 20
-    }
-})
-
-led2 = led_module.LED({
-    "pins": {
-        "pin": 21
-    }
-})
-
 if __name__ == '__main__':
+
+    total_seconds = 3
+    cycle_time = 1
+
+    led1 = led_module.LED({
+        "pins": {
+            "pin": 20
+        }
+    })
+
+    led2 = led_module.LED({
+        "pins": {
+            "pin": 21
+        }
+    })
 
     start_time = time.time()
     while time.time() - start_time < total_seconds:
