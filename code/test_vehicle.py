@@ -52,7 +52,7 @@ if __name__ == '__main__':
     vehicle.stop()
     time.sleep(1)
 
-    # Figure 8
+    print('Driving Figure 8')
     vehicle.drive_forward(1)
     time.sleep(1.5)
     vehicle.drive(0.5, True, 1, True)
