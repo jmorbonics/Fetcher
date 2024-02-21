@@ -12,7 +12,7 @@ class Config(TypedDict):
 
 class Switch(Button):
 
-    """child class of gpiozero.InputDevice, main functionality is instance property 'value'"""
+    """child class of gpiozero.Button"""
 
     def __init__(self, config: Config):
         super().__init__(config['pins']['pin'])
