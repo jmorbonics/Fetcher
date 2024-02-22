@@ -1,5 +1,5 @@
+import RPi.GPIO as GPIO
 from typing import TypedDict
-from gpiozero import LED as gpiozero_LED
 
 
 class PinsConfig(TypedDict):
@@ -10,9 +10,16 @@ class Config(TypedDict):
     pins: PinsConfig
 
 
-class LED(gpiozero_LED):
+class LED:
 
-    """child class of gpiozero.LED, main functionality is self.on(), self.off()"""
+    pin: int
 
     def __init__(self, config: Config):
-        super().__init__(config['pins']['pin'])
+        self.pin = config['pins']['pin']
+        GPIO.setup(self.pin, GPIO.OUT)
+
+    def on(self):
+        GPIO.output(self.pin, GPIO.HIGH)
+
+    def off(self):
+        GPIO.output(self.pin, GPIO.LOW)
