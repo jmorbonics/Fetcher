@@ -2,12 +2,8 @@ import RPi.GPIO as GPIO
 from typing import TypedDict
 
 
-class PinsConfig(TypedDict):
-    pin: int
-
-
 class Config(TypedDict):
-    pins: PinsConfig
+    pin: int
 
 
 class LED:
@@ -15,7 +11,7 @@ class LED:
     pin: int
 
     def __init__(self, config: Config):
-        self.pin = config['pins']['pin']
+        self.pin = config['pin']
         GPIO.setup(self.pin, GPIO.OUT)
 
     def on(self):

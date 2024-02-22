@@ -4,6 +4,7 @@ import numpy as np
 
 
 class Config(TypedDict):
+    # show_preview=True only works when having a graphical connection to the pi
     show_preview: bool
 
 

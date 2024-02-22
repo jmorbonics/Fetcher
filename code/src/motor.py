@@ -1,5 +1,6 @@
 from typing import TypedDict
-from gpiozero import PWMLED, LED
+from gpiozero import PWMLED
+from src.led import LED
 
 
 class PinsConfig(TypedDict):
@@ -23,12 +24,12 @@ class Motor:
     def __init__(self, config: Config):
 
         self.pwm = PWMLED(config['pins']['speed'])
-        self.control1 = LED(config['pins']['control1'])
-        self.control2 = LED(config['pins']['control2'])
+        self.control1 = LED({'pin': config['pins']['control1']})
+        self.control2 = LED({'pin': config['pins']['control2']})
 
     def stop(self) -> None:
         """Stop the motor"""
-        self.forward(0.0)
+        self._output(0.0, True, True)
 
     def forward(self, speed: float) -> None:
         """Spin the motor forward at a given speed"""

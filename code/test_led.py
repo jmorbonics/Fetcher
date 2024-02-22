@@ -8,15 +8,11 @@ if __name__ == '__main__':
     cycle_time = 1
 
     led1 = led_module.LED({
-        "pins": {
-            "pin": 20
-        }
+        "pin": 20
     })
 
     led2 = led_module.LED({
-        "pins": {
-            "pin": 21
-        }
+        "pin": 21
     })
 
     start_time = time.time()

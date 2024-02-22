@@ -23,8 +23,8 @@
       }
     }
   ],
-  "leds": [{ "pins": { "pin": 20 } }, { "pins": { "pin": 21 } }],
-  "switches": [{ "pins": { "pin": 2 } }, { "pins": { "pin": 3 } }],
+  "leds": [{ "pin": 20 }, { "pin": 21 }],
+  "switches": [{ "pin": 2 }, { "pin": 3 }],
   "vehicle": {
     "motors": {
       "left": {

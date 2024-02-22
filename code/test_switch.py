@@ -8,15 +8,11 @@ if __name__ == '__main__':
     sample_hz = 2
 
     switch1 = switch_module.Switch({
-        "pins": {
-            "pin": 2
-        }
+        "pin": 2
     })
 
     switch2 = switch_module.Switch({
-        "pins": {
-            "pin": 3
-        }
+        "pin": 3
     })
 
     start_time = time.time()
