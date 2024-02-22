@@ -58,4 +58,4 @@ html_static_path = ['_static']
 
 autosummary_generate = True
 
-autodoc_mock_imports = ['picamera2']
+autodoc_mock_imports = ['picamera2', 'RPi']
