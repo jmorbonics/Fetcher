@@ -14,7 +14,7 @@ Starter code for this project in found in the ``HackIllinois2024/code`` folder o
 Quickstart
 ----------
 
-1. Setup one system on your vehicle at a time. Test each with ``test_<system>.py``. For example, connect the provided switch the raspberry pi, and run ``test_switch.py``.
+1. Setup one system on your vehicle at a time. Test each with ``test_<system>.py``. For example, connect a motor to the raspberry pi, and run ``test_motor.py``.
 
 2. Once your systems have been tested and plugged in, run ``main.py`` where ``brain_type = 'human_driver'`` to test drive your vehicle.
 
