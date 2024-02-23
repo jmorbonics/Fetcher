@@ -153,7 +153,7 @@ We have parterned with the [Jackson Innovation Studio][jackson_innovation_studio
 We have reserved the Jackson Innovation Studio for participants in the John Deere track. The space will be available to participants at the following times:
 
 - Friday, February 23 8:30pm - 11:00pm
-- Saturday, February 24 12:00pm - 5:00pm
+- Saturday, February 24 12:00pm - 6:00pm
 
 The Jackson Innovation Studio is located in the basement of the Sidney Lu Mechanical Engineering Building at [1206 W Green St, Urbana, IL 61801, Room 0100](https://maps.app.goo.gl/Gp97vbMnAPboCCGY8)
 
