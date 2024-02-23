@@ -24,8 +24,10 @@ John Deere | HackIllinois
 # Table of Contents
 
 - [Prompt](#prompt)
+  - [Submission Criteria](#submission-criteria)
   - [Scoring Criteria](#scoring-criteria)
-  - [Maker Spaces](#maker-spaces)
+  - [Integrity](#integrity)
+  - [Jackson Innovation Studio](#jackson-innovation-studio)
 - [Materials](#materials)
   - [John Deere Kit](#john-deere-kit)
   - [Bring your Own](#bring-your-own)
@@ -40,16 +42,24 @@ John Deere | HackIllinois
   - [Find IP Address](#find-ip-address)
   - [Other Tips](#other-tips)
     - [Connecting to Wifi](#connecting-to-wifi)
-    - [Change Hostname](#change-hostname)
 
+- [Assembly](#assembly)
 - [Wiring and Testing](#wiring-and-testing)
-  - [Raspberry Pi Wiring](#raspberry-pi-wiring)
-  - [Switch](#switch)
-  - [Camera](#camera)
-  - [H-Bridge](#h-bridge)
-    - [H-Bridge Inputs](#h-bridge-inputs)
-    - [Motors](#motors)
-  - [Distance Sensors](#distance-sensors)
+
+  - [Raspberry Pi Pin Layout](#raspberry-pi-pin-layout)
+  - [Raspberry Pi HAT](#raspberry-pi-hat)
+
+    - [H-Bridge](#h-bridge)
+    - [Slide Switch - Motor Power Circuit](#slide-switch---motor-power-circuit)
+    - [Button Switches](#button-switches)
+    - [LEDs](#leds)
+
+  - [Other Components](#other-components)
+    - [Camera](#camera)
+    - [Distance Sensors](#distance-sensors)
+    - [Motor](#motor)
+
+- [CAD Files](#cad-files)
 - [Starter Code](#starter-code)
 - [Computer Vision Models](#computer-vision-models)
 
