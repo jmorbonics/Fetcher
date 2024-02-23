@@ -124,7 +124,13 @@ Good luck!
 
 ## Submission Criteria
 
-In addition to your normal devpost write up, we ask that teams submit a video of their vehicle working.
+We expect to see the following as part of submissions:
+
+- Devpost writeup
+  - Codebase
+  - Problem description
+  - Solution explanation
+- Video of the vehicle working
 
 ## Scoring Criteria
 
