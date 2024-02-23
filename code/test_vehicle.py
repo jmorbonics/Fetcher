@@ -63,3 +63,4 @@ if __name__ == '__main__':
     time.sleep(5)
     vehicle.drive_forward(1)
     time.sleep(1.5)
+    vehicle.stop()
