@@ -112,6 +112,10 @@ Like many problems at John Deere, this prompt requires more than just a software
 
 Good luck!
 
+## Submission Criteria
+
+In addition to your normal devpost write up, we ask that teams submit a video of their vehicle working.
+
 ## Scoring Criteria
 
 Submissions will be assessed by the following criteria:
@@ -133,7 +137,7 @@ We have parterned with the [Jackson Innovation Studio][jackson_innovation_studio
 We have reserved the Jackson Innovation Studio for participants in the John Deere track. The space will be available to participants at the following times:
 
 - Friday, February 23 8:30pm - 11:00pm
-- Saturday, February 24 12:00pm - 6:00pm
+- Saturday, February 24 12:00pm - 5:00pm
 
 The Jackson Innovation Studio is located in the basement of the Sidney Lu Mechanical Engineering Building at [1206 W Green St, Urbana, IL 61801, Room 0100](https://maps.app.goo.gl/Gp97vbMnAPboCCGY8)
 
@@ -152,8 +156,6 @@ John Deere provides the following items:
   - Swivel wheel and connectors
   - Acryllic frame
   - 3D Printed battery frame
-  - AA battery pack
-  - Switch
 
 - Raspberry Pi
 
@@ -172,8 +174,8 @@ John Deere provides the following items:
 
   - Printed Circuit Board
 
-    - 2 Switches - to be read by Raspberry Pi
-    - 1 Switch - to control motor power
+    - 2 Button Switches - to be read by Raspberry Pi
+    - Slide Switch - to control motor power circuit
     - 2 LEDs
     - [H-Bridge][h_bridge]
 
@@ -361,7 +363,20 @@ Ensure the battery fits properly into the frame.
 
 Follow along with the [wiring schematic](<static/Raspberry Pi Hat Wiring Diagram.pdf>) for instructions on how to wire your vehicle.
 
+  <p align="center">
+    <img
+      src="./static/images/Assembled Vehicle.png"
+      alt="Assembled Vehicle"
+      width="500"
+    />
+  </p>
+  <p align="center">
+    <em>A fully wired vehicle</em>
+  </p>
+
 ## Raspberry Pi Pin Layout
+
+To power on the Raspberry Pi, attach the USB-C cable.
 
 <a href="https://www.raspberrypi.com/documentation/computers/raspberry-pi.html">
   <p align="center">
@@ -375,35 +390,22 @@ Follow along with the [wiring schematic](<static/Raspberry Pi Hat Wiring Diagram
 
 ## Raspberry Pi HAT
 
-To simplify the wiring process, a Raspberry Pi HAT is provided for you. The HAT is placed directly on top of the Raspberry Pi. In the schematic, square pins designate `Pin 1`.
+To simplify the wiring process, a Raspberry Pi HAT is provided for you. The HAT is placed directly on top of the Raspberry Pi. In the schematic, square pins designate `Pin 1`. To power on the circuit board, attach the micro USB cable.
 
 <p align="center">
   <img
-    src="./static/images/Raspberry Pi HAT.png"
-    alt="Raspberry Pi HAT"
+    src="./static/images/Raspberry Pi HAT Schematic.png"
+    alt="Raspberry Pi HAT Schematic"
     width="500"
+  />
+    <img
+      src="./static/images/Raspberry Pi HAT.png"
+      alt="Raspberry Pi HAT"
+      width="500"
   />
 </p>
 
-## [Camera][camera]
-
-Follow along with [this video](https://www.youtube.com/watch?v=GImeVqHQzsE) to install your camera.
-
-Other helpful camera resources:
-
-- https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
-- https://www.raspberrypi.com/documentation/computers/camera_software.html#python-bindings-for-libcamera
-
-## [Distance Sensor][distance_sensor]
-
-Connect the pins of each ultrasonic distance sensor in their appropriate appropriate locations.
-
-- **Vcc**: 5V
-- **Trig**: Connected directly to GPIO pin of raspberry pi
-- **Echo**: Outputs 5V, **must be passed through voltage divider** to reduce voltage to be 3.3V. Connect the 3.3V signal directly to GPIO pin of raspberry pi. Failure to do this could damage the raspberry pi. Read more details below.
-- **Gnd**: Ground
-
-## [H-Bridge][h_bridge]
+### [H-Bridge][h_bridge]
 
 <p align="center">
   <img
@@ -412,6 +414,8 @@ Connect the pins of each ultrasonic distance sensor in their appropriate appropr
     width="500"
   />
 </p>
+
+**Ensure proper H-Bridge orientation by checking that the notch on the H-Bridge matches the notch on the board.**
 
 Each side (motor) of the H-Bridge takes in three inputs sent by the raspberry pi:
 
@@ -428,20 +432,53 @@ The **direction** of the motor is controlled by sending high (3.3V) or low (0V) 
 | LOW       | HIGH      | Backward        |
 | LOW       | LOW       | n/a             |
 
-The **speed** of the given motor is determined by the [duty cycle](https://en.wikipedia.org/wiki/Duty_cycle) of the [PWM signal](https://en.wikipedia.org/wiki/Pulse-width_modulation). A duty cycle of 100% turns the motor at 100% speed, a duty cycle of 50% turns the motor at 50% speed.
+The **speed** of the given motor is determined by the [duty cycle](https://en.wikipedia.org/wiki/Duty_cycle) of the [PWM signal](https://en.wikipedia.org/wiki/Pulse-width_modulation). A duty cycle of 100% turns the motor at 100% speed, a duty cycle of 50% turns the motor at 50% speed. Read the source code for examples.
 
-## [Motor][motor]
+### Slide Switch - Motor Power Circuit
+
+A slide switch is already assembled for you. Located next to the micro USB port, this switch controls the **motor power circuit**.
+
+It has two states:
+
+- **on**: slid _away_ from the micro USB port - current flows to motors
+- **off**: slid _toward_ to the micro USB port - current does not flow to motors
+
+### Button Switches
+
+Labeled `Switch 1` and `Switch 2` on the board, these button switches signal to the Raspberry Pi whether they are currently being pressed. The `state` of the switch can be tracked with software.
+
+### LEDs
+
+Two LEDs are provided for you on the board. They are controlled by the Raspberry Pi.
+
+## Other Components
+
+You are required to wire the following components to your vehicle. To insert wires into the green terminal blocks, push down on the top, insert the wire, and release. Test your connecting by gently pulling on the connected wire.
+
+### [Camera][camera]
+
+Follow along with [this video](https://www.youtube.com/watch?v=GImeVqHQzsE) to install your camera.
+
+Other helpful camera resources:
+
+- https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf
+- https://www.raspberrypi.com/documentation/computers/camera_software.html#python-bindings-for-libcamera
+
+### [Distance Sensor][distance_sensor]
+
+Connect the pins of each ultrasonic distance sensor in their appropriate appropriate locations. You will need to remove the plastic caps from the jumper wires before inserting into the green terminal blocks.
+
+### [Motor][motor]
 
 Connect each motor's positive and negative terminals at the assigned pins. If your motor turns in the opposite direction you expect, swap the polarity by switching the wires.
 
-## Switch
+**Motor not turning?**
 
-** insert switch wiring instructions **
+Make sure your [motor power slide switch](#slide-switch-motor-power-circuit) is on.
 
-A switch has two states:
+**Still not turning?**
 
-- **on**: 3.3V is sent to GPIO pin
-- **off**: 0V is sent to GPIO pin
+You may have blown a fuse in the motor circuit. Reach out for help.
 
 # [CAD Files][onshape_workspace]
 
@@ -459,7 +496,7 @@ This repository contains CAD files for various aspects of the assembled vehicle 
 
 # [Starter Code][github_pages]
 
-This repository contains basic starter code for you in Python in the [`code`](code) directory. The Raspberry Pi comes installed with `Python 3.11.2`.
+This repository contains basic starter code for you in Python in the [`code`](code) directory. The Raspberry Pi comes installed with `Python 3.11.2`. Documentation is hosted on the repo's [GitHub Pages][github_pages].
 
 ## Testing
 
@@ -479,6 +516,12 @@ Teams utilizing the camera for their autonomous vehicle might find it helpful to
 - PyTorch
 - Keras
 
-# Need Inspiration?
+# Need Project Inspiration?
 
 John Deere hosts dozens of publically available APIs and demo data. Create a MyJohnDeere account and get started! Read more at [developer.deere.com](https://developer.deere.com).
+
+# Author Notes
+
+I hope you enjoy your HackIllinois experience! I really enjoyed designing this prompt for you all. Best of luck!
+
+James Kabbes | John Deere
