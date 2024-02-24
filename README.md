@@ -3,7 +3,7 @@
 [jackson_innovation_studio]: https://mechse.illinois.edu/undergraduate/makerworks/jackson-innovation-studio
 [rechargable_battery]: https://a.co/d/7Zmw2Af
 [camera]: https://a.co/d/5NIxMsJ
-[onshape_workspace]: https://cad.onshape.com/documents/69497152238ace33f89eaddf/w/5a11fc55832b67ccaf01d13f/e/4acefc6cf6d51c6a34c84319
+[onshape_workspace]: https://cad.onshape.com/documents/69497152238ace33f89eaddf/w/5a11fc55832b67ccaf01d13f/e/4acefc6cf6d51c6a34c84319?renderMode=0&uiState=65d9601e2bff8123b6ce1732
 [github_pages]: https://jameskabbes.github.io/HackIllinois2024/
 [motor]: https://www.sparkfun.com/products/13302
 
