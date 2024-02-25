@@ -1,3 +1,11 @@
+<<<<<<< Updated upstream
+=======
+fetcher-415315-deae76a1ddb7.json
+.env
+>>>>>>> Stashed changes
 .DS_Store
 Data/
 __pycache__/
+code/src/brains/yolov3.weights
+yolov3.weights
+C:\Users\jmorb\UIUC_Coding\Fetcher\code\src\brains\yolov3.weights
