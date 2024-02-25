@@ -190,14 +190,20 @@ def main():
     )
 
     print('Forward')
-    # vehicle.drive_forward()
+    vehicle.drive_forward()
     print('Detecting')
     april_detect()
     print('Found shelf')
+    time.sleep(1)
     vehicle.stop()
 
-    # print("Turn Right")
-    # vehicle.pivot_right()
+    print("Turn Right")
+    vehicle.pivot_right()
+    time.sleep(3)
+
+    vehicle.drive_forward()
+    time.sleep(3)
+    vehicle.stop()
 
 
     # stop = False
