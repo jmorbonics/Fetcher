@@ -93,7 +93,7 @@ def detect(item):
             h = box[3]
             draw_prediction(image, class_ids[i], confidences[i], round(x), round(y), round(x+w), round(y+h), COLORS, classes)
             
-            print(str(classes[class_ids[i]]))
+            # print(str(classes[class_ids[i]]))
             # Check if the detected object is a banana
             if str(classes[class_ids[i]]) == item:
                 cap.release()
