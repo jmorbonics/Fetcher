@@ -11,12 +11,13 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 CHUNK_SIZE = 512
-FORMAT = pyaudio.paInt16
+#FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../../../fetcher-415315-deae76a1ddb7.json"
 
 load_dotenv()
+print(os.getenv("PICOVOICE_API_KEY"))
 OPENAI_KEY = os.getenv("OPENAI_API_KEY")
 PICOVOICE_KEY = os.getenv("PICOVOICE_API_KEY")
 

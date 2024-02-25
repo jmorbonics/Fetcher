@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 import camera as camera_module
+from picamera2 import Picamera2, Preview
+import libcamera
 # import argparse
 
 # argparsing (no longer needed)
@@ -40,6 +42,7 @@ def detect(item):
     camera = camera_module.Camera({
         "show_preview": False
     })
+
     # Initialize video capture from camera
     # print("hello?")
     # cap = cv2.VideoCapture(0) #, cv2.CAP_V4L2
@@ -59,12 +62,17 @@ def detect(item):
         camera.capture()
         image = camera.image_array
 
+        if image.shape[2] == 4:
+            print("debug")
+            image = cv2.cvtColor(image, cv2.COLOR_BGRA2RGB)
+
         Width = image.shape[1]
         Height = image.shape[0]
+        
         scale = 0.00392
 
-        blob = cv2.dnn.blobFromImage(image, scale, (10, 10), (0, 0, 0), True, crop=False)
-        print("penis overlord")
+        blob = cv2.dnn.blobFromImage(image, scale, (416, 416), (0, 0, 0), True, crop=False)
+        print("debug2")
         net.setInput(blob)
 
         outs = net.forward(get_output_layers(net))
@@ -94,6 +102,7 @@ def detect(item):
         indices = cv2.dnn.NMSBoxes(boxes, confidences, conf_threshold, nms_threshold)
 
         for i in indices:
+            print("found some object")
             try:
                 box = boxes[i]
             except:
@@ -106,19 +115,19 @@ def detect(item):
             h = box[3]
             draw_prediction(image, class_ids[i], confidences[i], round(x), round(y), round(x+w), round(y+h), COLORS, classes)
             
-            # print(str(classes[class_ids[i]]))
+            print(str(classes[class_ids[i]]))
             # Check if the detected object is a banana
             if str(classes[class_ids[i]]) == item:
                 cap.release()
                 cv2.destroyAllWindows()
                 return
 
-        # cv2.imshow("object detection", image)
-        # key = cv2.waitKey(10)
-        # if key == 27:  # Press ESC to exit
-        #     cap.release()
-        #     cv2.destroyAllWindows()
-        #     return
+        cv2.imshow("object detection", image)
+        key = cv2.waitKey(1)
+        if key == 27:  # Press ESC to exit
+            cap.release()
+            cv2.destroyAllWindows()
+            return
 
     cap.release()
     cv2.destroyAllWindows()
