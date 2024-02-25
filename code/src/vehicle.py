@@ -1,5 +1,7 @@
 from typing import TypedDict
 from . import motor
+import time
+
 
 
 class MotorsConfig(TypedDict):
@@ -18,33 +20,37 @@ class Vehicle:
 
     def __init__(self, config: Config):
 
-        self.left_motor = motor.Motor(config['motors']['left'])
-        self.right_motor = motor.Motor(config['motors']['right'])
+        self.left_motor = motor.Motor(config['motors']['right'])
+        self.right_motor = motor.Motor(config['motors']['left'])
 
     def stop(self) -> None:
         """stop both motors"""
         self.left_motor.stop()
         self.right_motor.stop()
 
-    def drive_forward(self, speed: float = 1.0) -> None:
+    def drive_backward(self, speed: float = 1.0) -> None:
         """turn both motors forward at a given speed"""
-        self.left_motor.forward(speed)
+        self.left_motor.forward(.815 * speed)
         self.right_motor.forward(speed)
 
-    def drive_backward(self, speed: float = 1.0) -> None:
+    def drive_forward(self, speed: float = .8) -> None:
         """turn both motors backward at a given speed"""
         self.left_motor.backward(speed)
-        self.right_motor.backward(speed)
+        self.right_motor.backward(.6 * speed)
 
     def pivot_left(self, speed: float = 1.0) -> None:
         """at the same speed, drive the left motor backward, and the right motor forward"""
         self.left_motor.backward(speed)
         self.right_motor.forward(speed)
 
-    def pivot_right(self, speed: float = 1.0) -> None:
+    def pivot_right(self, speed: float = .75) -> None:
         """at the same speed, drive the left motor forward, and the right motor backward"""
         self.left_motor.forward(speed)
         self.right_motor.backward(speed)
+        time.sleep(.75)
+        self.stop()
+
+
 
     def drive(self, left_speed: float, left_direction: bool, right_speed: float, right_direction: bool) -> None:
         """Control each motor's speed and direction independently"""
