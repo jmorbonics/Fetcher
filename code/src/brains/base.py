@@ -1,5 +1,6 @@
 from typing import TypedDict
 from voice_control import run_mic, language2UTF8, gpt_query
+from yolo_opencv_fetcher import detect, get_output_layers, draw_prediction
 from .. import vehicle as vehicle_module, camera as camera_module, distance_sensor as distance_sensor_module, led as led_module, switch as switch_module
 import time
 import pyaudio
@@ -82,6 +83,7 @@ class Brain:
             completion = gpt_query(translated)
             item = completion.choices[0].message.content
             print(item)
+            detect("banana")
 
             # ensure that the loop is running at the correct max frequency
             time.sleep(max(0, 1/self.sample_hz -
