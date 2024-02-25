@@ -35,9 +35,15 @@ def detect(item):
         classes = [line.strip() for line in f.readlines()]
     COLORS = np.random.uniform(0, 255, size=(len(classes), 3))
     net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
-
+    print("hello world")
     # Initialize video capture from camera
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0) #, cv2.CAP_V4L2
+    if not cap.isOpened():
+        print("ERROR! Unable to open camera or video file.")
+        exit()
+
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 600)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 
     # main logic loop for aisle
@@ -50,7 +56,7 @@ def detect(item):
         Height = image.shape[0]
         scale = 0.00392
 
-        blob = cv2.dnn.blobFromImage(image, scale, (416, 416), (0, 0, 0), True, crop=False)
+        blob = cv2.dnn.blobFromImage(image, scale, (418, 418), (0, 0, 0), True, crop=False)
 
         net.setInput(blob)
 
