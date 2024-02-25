@@ -37,7 +37,15 @@ def detect(item):
     net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
 
     # Initialize video capture from camera
+    print("hello?")
     cap = cv2.VideoCapture(0)
+    print("hello2?")
+
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 6)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 4)
+
+
+
 
 
     # main logic loop for aisle
@@ -50,7 +58,7 @@ def detect(item):
         Height = image.shape[0]
         scale = 0.00392
 
-        blob = cv2.dnn.blobFromImage(image, scale, (416, 416), (0, 0, 0), True, crop=False)
+        blob = cv2.dnn.blobFromImage(image, scale, (10, 10), (0, 0, 0), True, crop=True)
 
         net.setInput(blob)
 
@@ -100,12 +108,12 @@ def detect(item):
                 cv2.destroyAllWindows()
                 return
 
-        cv2.imshow("object detection", image)
-        key = cv2.waitKey(1)
-        if key == 27:  # Press ESC to exit
-            cap.release()
-            cv2.destroyAllWindows()
-            return
+        # cv2.imshow("object detection", image)
+        # key = cv2.waitKey(10)
+        # if key == 27:  # Press ESC to exit
+        #     cap.release()
+        #     cv2.destroyAllWindows()
+        #     return
 
     cap.release()
     cv2.destroyAllWindows()

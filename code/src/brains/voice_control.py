@@ -25,7 +25,7 @@ def main():
 	porcupine = pvporcupine.create(
   		access_key = PICOVOICE_KEY,
 		#keywords=['picovoice', 'bumblebee']
-  		keyword_paths=['../../../static/Hey-Fetcher_en_windows_v3_0_0.ppn']
+  		keyword_paths=['../../../static/Hey-Fetcher_en_raspberry-pi_v3_0_0.ppn']
 	)
 
 	
