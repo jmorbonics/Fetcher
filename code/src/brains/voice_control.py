@@ -25,12 +25,12 @@ def main():
 
 	porcupine = pvporcupine.create(
   		access_key = PICOVOICE_KEY,
-		#keywords=['picovoice', 'bumblebee']
-  		keyword_paths=['../../../static/Hey-Fetcher_en_raspberry-pi_v3_0_0.ppn']
+		keywords=['picovoice', 'bumblebee']
+  		#keyword_paths=['../../../static/Hey-Fetcher_en_raspberry-pi_v3_0_0.ppn']
 	)
 
 	
-	run_mic(porcupine, 1)
+	run_mic(porcupine, -1)
 	transcript = language2UTF8()
 	translated = translate_text('en', transcript)
 	completion = gpt_query(translated)
@@ -40,6 +40,8 @@ def main():
 
 
 def run_mic(porcupine, index):
+	devices = PvRecorder.get_available_devices()
+	print(devices)
 	recorder = PvRecorder(
 		frame_length = porcupine.frame_length,
 		device_index = index

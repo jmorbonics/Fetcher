@@ -18,7 +18,11 @@ class Camera:
 
         try:
             self.cam = Picamera2()
+            # preview_config = self.cam.create_preview_configuration()
+            # preview_config["transform"] = libcamera.Transform(hflip=1, vflip=1)
+            # self.cam.configure(preview_config)
             self.cam.start(show_preview=config['show_preview'])
+        
         except:
             self.cam = None
 

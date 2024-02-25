@@ -6,23 +6,23 @@ import time
 #import pyaudio
 import numpy as np
 import os
-import pvporcupine
-from pvrecorder import PvRecorder
-import wave
-import struct
-from google.cloud import speech_v1p1beta1 as speech
-import openai
-from openai import OpenAI
+# import pvporcupine
+# from pvrecorder import PvRecorder
+# import wave
+# import struct
+# from google.cloud import speech_v1p1beta1 as speech
+# import openai
+# from openai import OpenAI
 from dotenv import load_dotenv
 
-CHUNK_SIZE = 512
-#FORMAT = pyaudio.paInt16
-CHANNELS = 1
-RATE = 44100
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../../../fetcher-415315-deae76a1ddb7.json"
-load_dotenv()
-OPENAI_KEY = os.getenv("OPENAI_API_KEY")
-PICOVOICE_KEY = os.getenv("PICOVOICE_API_KEY")
+# CHUNK_SIZE = 512
+# #FORMAT = pyaudio.paInt16
+# CHANNELS = 1
+# RATE = 44100
+# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../../../fetcher-415315-deae76a1ddb7.json"
+# load_dotenv()
+# OPENAI_KEY = os.getenv("OPENAI_API_KEY")
+# PICOVOICE_KEY = os.getenv("PICOVOICE_API_KEY")
 
 
 class Config(TypedDict):

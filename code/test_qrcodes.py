@@ -1,4 +1,4 @@
-from . import vehicle as vehicle_module
+from src import vehicle as vehicle_module
 import time
 
 #!/usr/bin/env python
@@ -9,7 +9,7 @@ import argparse
 import numpy as np
 import cv2 as cv
 from pupil_apriltags import Detector
-import camera as camera_module
+from src import camera as camera_module
 
 
 def get_args():

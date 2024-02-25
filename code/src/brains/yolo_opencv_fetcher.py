@@ -60,6 +60,7 @@ def detect(item):
         #     print("penis")
         #     break
         camera.capture()
+        # print(camera.image_array)
         image = camera.image_array
 
         if image.shape[2] == 4:

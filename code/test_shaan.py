@@ -26,11 +26,16 @@ if __name__ == '__main__':
 
     print('Forward')
     vehicle.drive_forward()
-    time.sleep(5)
+    time.sleep(3) # 4 15
     vehicle.stop()
 
-    # print("Turn Right")
-    # vehicle.pivot_right()
+    print("Turn Right")
+    vehicle.pivot_right()
+    time.sleep(3)
+
+    vehicle.drive_forward()
+    time.sleep(2)
+    vehicle.stop()
 
 
     # stop = False
