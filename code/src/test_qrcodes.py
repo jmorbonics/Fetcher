@@ -1,3 +1,6 @@
+from src import vehicle as vehicle_module
+import time
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import copy
@@ -29,7 +32,7 @@ def get_args():
     return args
 
 
-def main():
+def april_detect():
     # 引数解析 #################################################################
     args = get_args()
 
@@ -96,6 +99,7 @@ def main():
             tag_size=None,
         )
         for tag in tags:
+            return
             print(tag.tag_id)
 
         # 描画 ################################################################
@@ -160,6 +164,52 @@ def main():
 #                cv.LINE_AA)
 
 #     return image
+
+
+
+def main():
+    vehicle = vehicle_module.Vehicle(
+        {
+            "motors": {
+                "left": {
+                    "pins": {
+                        "speed": 13,
+                        "control1": 5,
+                        "control2": 6
+                    }
+                },
+                "right": {
+                    "pins": {
+                        "speed": 12,
+                        "control1": 7,
+                        "control2": 8
+                    }
+                }
+            }
+        }
+    )
+
+    print('Forward')
+    vehicle.drive_forward()
+    print('Detecting')
+    april_detect()
+    print('Found shelf')
+    vehicle.stop()
+
+    # print("Turn Right")
+    # vehicle.pivot_right()
+
+
+    # stop = False
+    # for distance_sensor in vehicle.distance_sensors:
+    #     if distance_sensor.distance < 0.25:
+    #         self.vehicle.stop()
+    #         stop = True
+
+    # if not stop:
+    #     self.vehicle.drive_forward(10)
+
+
 
 
 if __name__ == '__main__':
