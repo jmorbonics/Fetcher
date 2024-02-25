@@ -1,5 +1,8 @@
 import cv2
 import numpy as np
+import camera as camera_module
+from picamera2 import Picamera2, Preview
+import libcamera
 # import argparse
 
 # argparsing (no longer needed)
@@ -35,29 +38,41 @@ def detect(item):
         classes = [line.strip() for line in f.readlines()]
     COLORS = np.random.uniform(0, 255, size=(len(classes), 3))
     net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
-    print("hello world")
-    # Initialize video capture from camera
-    cap = cv2.VideoCapture(0) #, cv2.CAP_V4L2
-    if not cap.isOpened():
-        print("ERROR! Unable to open camera or video file.")
-        exit()
 
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 600)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    camera = camera_module.Camera({
+        "show_preview": False
+    })
+
+    # Initialize video capture from camera
+    # print("hello?")
+    # cap = cv2.VideoCapture(0) #, cv2.CAP_V4L2
+    # cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+
+    # cap.set(cv2.CAP_PROP_FRAME_WIDTH, 600)
+    # cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 
     # main logic loop for aisle
     while True:
-        ret, image = cap.read()
-        if not ret:
-            break
+        # ret, image = cap.read()
+        # print(type(ret))
+        # if not ret:
+        #     print("penis")
+        #     break
+        camera.capture()
+        image = camera.image_array
+
+        if image.shape[2] == 4:
+            print("debug")
+            image = cv2.cvtColor(image, cv2.COLOR_BGRA2RGB)
 
         Width = image.shape[1]
         Height = image.shape[0]
+        
         scale = 0.00392
 
-        blob = cv2.dnn.blobFromImage(image, scale, (418, 418), (0, 0, 0), True, crop=False)
-
+        blob = cv2.dnn.blobFromImage(image, scale, (416, 416), (0, 0, 0), True, crop=False)
+        print("debug2")
         net.setInput(blob)
 
         outs = net.forward(get_output_layers(net))
@@ -87,6 +102,7 @@ def detect(item):
         indices = cv2.dnn.NMSBoxes(boxes, confidences, conf_threshold, nms_threshold)
 
         for i in indices:
+            print("found some object")
             try:
                 box = boxes[i]
             except:
@@ -99,7 +115,7 @@ def detect(item):
             h = box[3]
             draw_prediction(image, class_ids[i], confidences[i], round(x), round(y), round(x+w), round(y+h), COLORS, classes)
             
-            # print(str(classes[class_ids[i]]))
+            print(str(classes[class_ids[i]]))
             # Check if the detected object is a banana
             if str(classes[class_ids[i]]) == item:
                 cap.release()

@@ -1,4 +1,4 @@
-import pyaudio
+# import pyaudio
 import numpy as np
 import os
 import pvporcupine
@@ -11,12 +11,13 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 CHUNK_SIZE = 512
-FORMAT = pyaudio.paInt16
+#FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../../../fetcher-415315-deae76a1ddb7.json"
 
 load_dotenv()
+print(os.getenv("PICOVOICE_API_KEY"))
 OPENAI_KEY = os.getenv("OPENAI_API_KEY")
 PICOVOICE_KEY = os.getenv("PICOVOICE_API_KEY")
 
@@ -25,7 +26,7 @@ def main():
 	porcupine = pvporcupine.create(
   		access_key = PICOVOICE_KEY,
 		#keywords=['picovoice', 'bumblebee']
-  		keyword_paths=['../../../static/Hey-Fetcher_en_windows_v3_0_0.ppn']
+  		keyword_paths=['../../../static/Hey-Fetcher_en_raspberry-pi_v3_0_0.ppn']
 	)
 
 	
