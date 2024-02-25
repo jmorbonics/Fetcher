@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import camera as camera_module
 # import argparse
 
 # argparsing (no longer needed)
@@ -36,30 +37,34 @@ def detect(item):
     COLORS = np.random.uniform(0, 255, size=(len(classes), 3))
     net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
 
+    camera = camera_module.Camera({
+        "show_preview": False
+    })
     # Initialize video capture from camera
-    print("hello?")
-    cap = cv2.VideoCapture(0)
-    print("hello2?")
+    # print("hello?")
+    # cap = cv2.VideoCapture(0) #, cv2.CAP_V4L2
+    # cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
 
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 6)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 4)
-
-
-
+    # cap.set(cv2.CAP_PROP_FRAME_WIDTH, 600)
+    # cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 
     # main logic loop for aisle
     while True:
-        ret, image = cap.read()
-        if not ret:
-            break
+        # ret, image = cap.read()
+        # print(type(ret))
+        # if not ret:
+        #     print("penis")
+        #     break
+        camera.capture()
+        image = camera.image_array
 
         Width = image.shape[1]
         Height = image.shape[0]
         scale = 0.00392
 
-        blob = cv2.dnn.blobFromImage(image, scale, (10, 10), (0, 0, 0), True, crop=True)
-
+        blob = cv2.dnn.blobFromImage(image, scale, (10, 10), (0, 0, 0), True, crop=False)
+        print("penis overlord")
         net.setInput(blob)
 
         outs = net.forward(get_output_layers(net))

@@ -1,4 +1,4 @@
-import pyaudio
+# import pyaudio
 import numpy as np
 import os
 import pvporcupine

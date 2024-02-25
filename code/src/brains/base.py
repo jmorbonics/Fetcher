@@ -3,7 +3,7 @@ from typing import TypedDict
 #from yolo_opencv_fetcher import detect, get_output_layers, draw_prediction
 from .. import vehicle as vehicle_module, camera as camera_module, distance_sensor as distance_sensor_module, led as led_module, switch as switch_module
 import time
-import pyaudio
+#import pyaudio
 import numpy as np
 import os
 import pvporcupine
@@ -16,7 +16,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 CHUNK_SIZE = 512
-FORMAT = pyaudio.paInt16
+#FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../../../fetcher-415315-deae76a1ddb7.json"
