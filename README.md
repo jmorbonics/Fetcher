@@ -8,7 +8,7 @@
 [motor]: https://www.sparkfun.com/products/13302
 
 <h1 align="center">
-John Deere | HackIllinois
+Fetcher | John Deere | HackIllinois
 </h1>
 
 <p align="center">
@@ -21,7 +21,31 @@ John Deere | HackIllinois
 
 <br>
 
-# Table of Contents
+# Inspiration
+The idea to create Fetcher, our robot designed to assist in locating items at a grocery store stemmed from the lack of helpful technology in shopping. We were particularly inspired by international students, many of whom struggled to navigate our local Target aisles with a language barrier and struggling to find specific products. Additionally, the experiences of elderly individuals who struggle to read at a distance or locate goods based on signs deeply influenced our design process. Driven by a commitment to inclusivity and accessibility, we ensured that Fetcher would be a valuable companion for people of all ages and backgrounds.
+
+# What it does
+Fetcher uses computer vision, deep neural network image processing, natural language processing, and sensory input to intelligently navigate stores while providing the best possible customer experience. Fetcher initially starts in sentry mode, waiting at one of the QR Code homebases strategically placed at the end of each aisle. When a customer says, "Hey, Fetcher," Fetcher wakes up and begins listening to their speech. With support of almost any language, Fetcher intelligently parses their natural dialogue to determine the item they are looking for. Fetcher then leads the way, guiding the customer to their desired item in the store before returning to a QR Code homebase, ready to help the next user.
+
+# How we built it
+Our physical robot was built with a combination of 3d printing, the given hardware kit, and a microphone. For 3D printing, we mounted ultrasonic sensors to the front and back of the bot for object avoidance and user leading functionality, as well as securely attaching our Raspberry Pi, Blue Snowball microphone, and camera module. The interfacing was then done via SSH and a VNC Viewer virtual desktop, which allowed us to deploy and integrate our locally-written code on the Pi. Upon receiving a wake word from the customer, Fetcher will activate using Picovoice's Porcupine wake word NLP model, and listen to the user's request. The user will be able to speak to Fetcher in any language, and Fetcher will process the formatted .wav file through Google's speech-to-text and translation apis. Given the translated phrases, Fetcher makes a call to OpenAI's ChatGPT 3.5 turbo model to simplify and parse the input phrase into a list of groceries the customer desires to purchase. The following list will then be processed through a python script that determines the navigation of Fetcher through the grocery store based on QR Codes. The QR codes are actually April Tags, which are scanned and recognized through Fetcher's right facing camera. Using the pupil-apriltags library and detector along with opencv, we were able to decode the unique ID of each april tag, using this to store information about what items are housed in each aisle, so that Fetcher can decide if he should turn or continue onwards. When Fetcher traverses the aisle, a deep neural network trained on object detection is constantly ran with the camera input, detecting if we have reached our destination. This YOLO (You Only Look Once) model accurately identifies a wide range of objects, greatly encompassing our scope of store items. Finally, our ultrasonic sensors ensure we don't run into anything in the front or back while walking down the aisles and returning to an april tag homebase.
+
+# Challenges we ran into
+Our biggest challenge was code integration. Since we decided to divide work evenly among team members, each person created an algorithm for a different step in the item finding process. Upon combination of code, we ran into a number of errors, from resolving module imports, to opencv not working on the pi, to our hat's microusb port falling off. In the end we were able to fix these problems, but in the future we may begin to integrate our code at more frequent intervals. We also had a fuse blow between our H bridge and motor ports which turned out to be an exciting (yet time consuming) multimeter filled learning experience.
+
+# Accomplishments that we're proud of
+This was our group's first hardware hackathon, and we are very proud to have created a working proof of concept. Most of our group had never had any electrical experience, so coding in a Raspberry Pi terminal was new and exiting. None of us had prior computer vision experience or API plugin usage, so we are proud to have integrated all of these pieces into our final code!
+
+# What we learned
+We learned that consistent integration is critical to the final creation of a product.
+
+# What's next for Fetcher
+Fetcher was built with scaling in mind. Ideally, Fetcher will soon have multi-shelf compatibility, allowing the camera to scan entire rows at once, exponentially increasing the number of items able to be found. Later on, Fetcher could also include an arm mechanism, allowing for the picking of goods of a shelf removing the need to shop in person. In addition, Fetcher can be trained to recognize empty shelves, alerting store employees that certain items need to be restocked.
+
+# Built With
+apriltags, chatgpt, cmake, opencv, picovoice, python, and yolo ML models
+
+# HackIllinois Starter Guide - Table of Contents
 
 - [Prompt](#prompt)
   - [Submission Criteria](#submission-criteria)
